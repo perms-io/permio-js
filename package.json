@@ -7,7 +7,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PrivateJAR/permio-js.git"
+    "url": "git+https://github.com/perms-io/permio-js.git"
   },
   "homepage": "https://perms.io",
   "keywords": [
