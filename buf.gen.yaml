@@ -1,4 +1,4 @@
-# Generates src/gen/ from the public protos in the PrivateJAR/proto repo.
+# Generates src/gen/ from the public protos in the perms-io/proto repo.
 # Run scripts/generate.sh rather than `buf generate` directly: it lets you point
 # at a different proto checkout (PERMIO_PROTO_DIR) and checks the output.
 version: v2

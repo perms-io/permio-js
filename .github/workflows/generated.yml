@@ -40,7 +40,7 @@ jobs:
         if: steps.pin.outputs.enabled == 'true'
         uses: useblacksmith/checkout@v1
         with:
-          repository: PrivateJAR/proto
+          repository: perms-io/proto
           ref: ${{ steps.pin.outputs.commit }}
           ssh-key: ${{ secrets.PROTO_DEPLOY_KEY }}
           path: .proto-src
