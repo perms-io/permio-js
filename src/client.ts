@@ -34,8 +34,6 @@ import { withResilience, type RetryOptions } from "./transport.js";
 
 /** Production API. */
 export const DEFAULT_BASE_URL = "https://api.perms.io";
-/** Development API. */
-export const DEV_BASE_URL = "https://dev-api.perms.io";
 
 export interface PermioOptions {
   /** API key from the dashboard (`perms_…`), or a legacy JWT key. */

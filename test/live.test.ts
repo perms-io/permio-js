@@ -1,23 +1,24 @@
-// Integration test against a real deployment. Skipped unless PERMIO_API_KEY is
-// set. PERMIO_BASE_URL defaults to the development API (DEV_BASE_URL). Because
-// it writes, it refuses to run against anything but the development API or a
-// local host (see live-target.ts). The key needs full
-// access to its project (PERMIO_PROJECT, default: the key's project from whoAmI):
-//   PERMIO_API_KEY=perms_... npm test -- test/live.test.ts
+// Integration test against a real deployment. Skipped unless both
+// PERMIO_API_KEY and PERMIO_BASE_URL are set; there is no default target.
+// Because it writes, it refuses to run against production or any host outside
+// the allowlist in live-target.ts. The key needs full access to its project
+// (PERMIO_PROJECT, default: the key's project from whoAmI):
+//   PERMIO_API_KEY=perms_... PERMIO_BASE_URL=https://... npm test -- test/live.test.ts
 //
 // Everything it creates uses fixed IDs prefixed "sdk-it-js" and is removed
 // before and after the run, so an interrupted run is cleaned up by the next one.
 // Runs sharing a project must not overlap (CI serialises them).
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { DEV_BASE_URL, Permio, PermioAuthError, group } from "../src/index.js";
+import { Permio, PermioAuthError, group } from "../src/index.js";
 import { isAllowedLiveTarget } from "./live-target.js";
 
 const apiKey = process.env.PERMIO_API_KEY;
-const baseUrl = process.env.PERMIO_BASE_URL || DEV_BASE_URL;
-if (apiKey && !isAllowedLiveTarget(baseUrl)) {
+const baseUrl = process.env.PERMIO_BASE_URL || "";
+const enabled = Boolean(apiKey && baseUrl);
+if (enabled && !isAllowedLiveTarget(baseUrl)) {
   throw new Error(
-    `refusing to run the live test against ${baseUrl}: it writes, so only ${DEV_BASE_URL} and local hosts ` +
-      "(localhost, 127.0.0.1, [::1], *.localhost, *.test) are allowed",
+    `refusing to run the live test against ${baseUrl}: it writes, so only non-production *.perms.io hosts ` +
+      "and local hosts (localhost, 127.0.0.1, [::1], *.localhost, *.test) are allowed; never api.perms.io",
   );
 }
 
@@ -31,7 +32,7 @@ const DOCS = `${ROOT}/docs`;
 const DOC1 = `${DOCS}/1`;
 const OTHER = `${ROOT}/other`;
 
-describe.skipIf(!apiKey)("live integration", { timeout: 30_000 }, () => {
+describe.skipIf(!enabled)("live integration", { timeout: 30_000 }, () => {
   let permio: Permio;
   let project: string;
 
