@@ -1,6 +1,6 @@
 {
   "name": "permio",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "TypeScript SDK for perms.io: RBAC and fine-grained authorization as a service. Permission checks, grants, groups and access filters for Node, edge and browsers",
   "license": "Apache-2.0",
   "author": "PrivateJAR",
