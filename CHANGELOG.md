@@ -4,7 +4,7 @@ All notable changes to this package are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the package uses
 [semantic versioning](https://semver.org/).
 
-## Unreleased (0.5.0)
+## 0.5.0
 
 ### Removed
 
@@ -20,7 +20,7 @@ All notable changes to this package are documented here. The format follows
   production (`api.perms.io`). CI passes the target from the
   `PERMIO_DEV_BASE_URL` secret.
 
-## Unreleased (0.4.0)
+## 0.4.0
 
 ### Changed
 
