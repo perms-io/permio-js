@@ -1,7 +1,6 @@
 export {
   Permio,
   DEFAULT_BASE_URL,
-  DEV_BASE_URL,
   type PermioOptions,
   type RequestOptions,
   type CheckParams,

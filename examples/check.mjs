@@ -3,7 +3,7 @@
 //   npm run build
 //   PERMIO_API_KEY=perms_... PERMIO_PROJECT=my-app node examples/check.mjs alice docs 42 docs.read
 //
-// Set PERMIO_BASE_URL=https://dev-api.perms.io to use the development API.
+// Set PERMIO_BASE_URL to use a deployment other than production.
 // In your own project, import from "permio" instead of "../dist/index.js".
 import { Permio, PermioError, resource } from "../dist/index.js";
 

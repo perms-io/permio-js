@@ -73,10 +73,8 @@ new Permio({
 });
 ```
 
-| Environment | `baseUrl`                    |
-| ----------- | ---------------------------- |
-| Production  | `https://api.perms.io` (default)                             |
-| Development | `https://dev-api.perms.io` (also exported as `DEV_BASE_URL`) |
+`baseUrl` defaults to production, `https://api.perms.io` (also exported as
+`DEFAULT_BASE_URL`). Pass it explicitly to use another deployment.
 
 Keep API keys on the server. In a browser bundle the key is visible to anyone
 who loads the page.
@@ -622,22 +620,22 @@ hand.
 generated from. CI regenerates from that commit and fails if `src/gen/` differs,
 so update both together. Releasing is described in [RELEASING.md](RELEASING.md).
 
-The integration test in `test/live.test.ts` runs only when `PERMIO_API_KEY` is
-set. It needs a full-access key, talks to the development API unless
-`PERMIO_BASE_URL` says otherwise, and refuses to run (fails) against anything
-but the development API and local hosts (`localhost`, `127.0.0.1`, `[::1]`,
-`*.localhost`, `*.test`). It
+The integration test in `test/live.test.ts` runs only when both
+`PERMIO_API_KEY` and `PERMIO_BASE_URL` are set; there is no default target. It
+needs a full-access key, and refuses to run (fails) against production
+(`api.perms.io`) or anything outside the allowlist: other `*.perms.io` hosts
+and local hosts (`localhost`, `127.0.0.1`, `[::1]`, `*.localhost`, `*.test`). It
 covers `whoAmI`, grant, check, `batchCheck`, `listAccess`, revoke, a group and
 a bad key, using fixed `sdk-it-js-*` IDs and `sdk-it-js.*` permissions that it
 deletes before and after. The project is the key's own unless
 `PERMIO_PROJECT` is set:
 
 ```sh
-PERMIO_API_KEY=perms_… npx vitest run test/live.test.ts
+PERMIO_API_KEY=perms_… PERMIO_BASE_URL=https://… npx vitest run test/live.test.ts
 ```
 
-CI runs it in the `integration` job when the `PERMIO_DEV_API_KEY` secret is
-set, and skips it otherwise.
+CI runs it in the `integration` job when the `PERMIO_DEV_API_KEY` and
+`PERMIO_DEV_BASE_URL` secrets are both set, and skips it otherwise.
 
 ## License
 

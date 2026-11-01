@@ -4,6 +4,22 @@ All notable changes to this package are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the package uses
 [semantic versioning](https://semver.org/).
 
+## Unreleased (0.5.0)
+
+### Removed
+
+- **Breaking:** the `DEV_BASE_URL` export has been removed. To use a
+  deployment other than production, pass its URL explicitly as `baseUrl`.
+
+### Changed
+
+- The live integration test no longer has a default target: it runs only
+  when both `PERMIO_API_KEY` and `PERMIO_BASE_URL` are set, and is skipped
+  otherwise. Its allowlist is now local hosts (`localhost`, `127.0.0.1`,
+  `[::1]`, `*.localhost`, `*.test`) and `*.perms.io` hosts other than
+  production (`api.perms.io`). CI passes the target from the
+  `PERMIO_DEV_BASE_URL` secret.
+
 ## Unreleased (0.4.0)
 
 ### Changed
@@ -41,7 +57,7 @@ All notable changes to this package are documented here. The format follows
   access level). `WhoAmI` is retried like the other reads.
 - The live test (`test/live.test.ts`) is now an integration test of grant,
   check, batch check, list access, revoke, groups and error mapping. It runs
-  whenever `PERMIO_API_KEY` is set (against the dev API by default), and in CI
+  whenever `PERMIO_API_KEY` is set (against the development API by default), and in CI
   when the `PERMIO_DEV_API_KEY` secret is available.
 - `PermioRateLimitError` for `ResourceExhausted` (HTTP 429), with
   `retryAfterMs` from the server's `google.rpc.RetryInfo` or `Retry-After`.
