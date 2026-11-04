@@ -4,6 +4,10 @@
 [![npm downloads](https://img.shields.io/npm/dw/permio)](https://www.npmjs.com/package/permio)
 [![license](https://img.shields.io/npm/l/permio)](LICENSE)
 
+**[Permio](https://perms.io) is hosted authorization for your app: RBAC and fine-grained permission checks on hierarchical resources, for multi-tenant SaaS.**
+
+[Website](https://perms.io) · [TypeScript SDK docs](https://docs.perms.io/sdk/typescript/) · [Quickstart](https://docs.perms.io/quickstart/) · [Dashboard](https://app.perms.io)
+
 TypeScript SDK for [perms.io](https://perms.io): RBAC and fine-grained
 authorization as a service, with permissions checked on hierarchical resource
 URIs.
@@ -58,6 +62,8 @@ A principal that lacks the permission is a normal answer: `check` resolves to
 network trouble).
 
 A runnable version lives in [`examples/check.mjs`](examples/check.mjs).
+
+**Next:** the [TypeScript SDK guide](https://docs.perms.io/sdk/typescript/) covers configuration, filtering lists by access, groups and errors in depth, and [how Permio works](https://docs.perms.io/how-it-works/) explains resources, roles and inheritance.
 
 ## Configuration
 
