@@ -3,13 +3,14 @@
   "version": "0.5.0",
   "description": "TypeScript SDK for perms.io: RBAC and fine-grained authorization as a service. Permission checks, grants, groups and access filters for Node, edge and browsers",
   "license": "Apache-2.0",
-  "author": "PrivateJAR",
+  "author": "perms.io <support@perms.io>",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/perms-io/permio-js.git"
   },
   "homepage": "https://perms.io",
+  "bugs": "https://github.com/perms-io/permio-js/issues",
   "keywords": [
     "permio",
     "perms.io",
